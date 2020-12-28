@@ -38,6 +38,9 @@ app_dir="mediapipe/examples/desktop"
 bin_dir="bazel-bin"
 declare -a default_bazel_flags=(build -c opt --define MEDIAPIPE_DISABLE_GPU=1)
 
+target_name="makeup"
+echo "target_name: $target_name"
+
 while [[ -n $1 ]]; do
   case $1 in
     -d)
@@ -65,8 +68,9 @@ declare -a bazel_flags
 
 apps="${app_dir}/*"
 for app in ${apps}; do
-  if [[ -d "${app}" ]]; then
-    target_name=${app##*/}
+  current_target_name=${app##*/}
+  if [[ -d "${app}" && 
+        "${current_target_name}" == "${target_name}" ]]; then
     if [[ "${target_name}" == "autoflip" ||
           "${target_name}" == "hello_world" ||
           "${target_name}" == "media_sequence" ||

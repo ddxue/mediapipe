@@ -582,3 +582,30 @@ cc_test(
         "//mediapipe/framework/port:status",
     ],
 )
+
+cc_library(
+    name = "face_landmarks_to_segmentation_calculator",
+    srcs = ["face_landmarks_to_segmentation_calculator.cc"],
+    visibility = ["//visibility:public"],    
+    deps = [
+        "//mediapipe/framework:calculator_framework",
+        "//mediapipe/framework:calculator_options_cc_proto",
+        "//mediapipe/framework:timestamp",
+        "//mediapipe/framework/port:status",
+        "//mediapipe/framework/deps:file_path",
+        "@com_google_absl//absl/time",
+        "@com_google_absl//absl/strings",
+        "//mediapipe/framework/formats:detection_cc_proto",
+        "//mediapipe/framework/formats:landmark_cc_proto",
+        "//mediapipe/framework/formats:rect_cc_proto",
+        "//mediapipe/framework/port:ret_check",
+        "//mediapipe/framework/formats:image_frame",
+        "//mediapipe/framework/formats:matrix",
+        "//mediapipe/framework/formats:image_frame_opencv",
+        "//mediapipe/framework/port:opencv_core",
+        "//mediapipe/framework/port:opencv_imgproc",
+        "//mediapipe/framework/port:opencv_imgcodecs", 
+        "//mediapipe/util:resource_util",
+    ],
+    alwayslink = 1,
+)
